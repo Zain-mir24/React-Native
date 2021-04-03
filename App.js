@@ -12,8 +12,9 @@ export default function App() {
     setText(getText + txt)
   }
 
-  const butnlick=({getText})=>{
-    if({getText}==={randomnumber}){
+  const butnlick=(text)=>{
+    
+    if(text=={randomnumber}){
       console.log('correct')
     }
     else{
@@ -37,11 +38,11 @@ export default function App() {
         <Button title="7" color="purple" onPress={buttonClick.bind(this,7)} />
         <Button title="8" color="purple" onPress={buttonClick.bind(this,8)} />
         <Button title="9" color="purple" onPress={buttonClick.bind(this,9)} />
-        <Button title="guess"color="purple" onPress={butnlick.bind(this,{getText})} />
+        <Button title="guess"color="purple" onPress={butnlick.bind(this,{setText})} />
         
         </View>
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" />  
     </View>
   );
 }
