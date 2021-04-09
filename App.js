@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 
 export default function App() {
-  const [getText, setText] = useState(0);
+  const [getText, setText] = useState('');
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
   const buttonClick = (txt) => {
@@ -18,13 +18,11 @@ export default function App() {
     else{
       console.log('out of attempts')
     }
-    
-  };
-
+      };
   const butnlick = (text) => {
     chances();
     
-    if (text == { randomnumber }) {
+    if (text ==  randomnumber ) {
       console.log("correct");
     } else {
       console.log("fail");
