@@ -7,6 +7,8 @@ export default function App() {
   const [getText, setText] = useState(0);
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
+  const[points,setpoints] = useState(0)
+  const[round,setround] =useState(0)
   const buttonClick = (txt) => {
     // alert(txt)
     if(getText == 0)
@@ -19,8 +21,11 @@ export default function App() {
     setattempts(attempts+1)
     console.log('incremented')
     }
+    
     else{
       console.log('out of attempts')
+      setattempts(0)
+      setround(round+1)
     }
       };
   const butnlick = () => {
@@ -28,6 +33,7 @@ export default function App() {
     
     if (getText ==  randomnumber ) {
       console.log("correct");
+      setpoints(points+10)
     } else {
       console.log("fail");
     }
@@ -37,7 +43,7 @@ export default function App() {
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
       <View>{randomnumber}</View>
-      <TextInput onChange={(e)=>setText(e.target.value)} style={{ fontSize: 50 }} value={getText} />
+      <Text style={{ fontSize: 50 }}  >{getText}</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
           <Button title="1" color="green" onPress={buttonClick.bind(this, 1)} />
@@ -80,6 +86,9 @@ export default function App() {
           />
         </View>
       </View>
+      <View> <strong> Points of the player are {''+ points} User only has 5 attempts out of which {attempts} remains</strong></View>
+      
+      <View> Round no {round}</View>
       <StatusBar style="auto" />
     </View>
   );
