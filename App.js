@@ -1,14 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button,TextInput } from "react-native";
 
 export default function App() {
-  const [getText, setText] = useState('');
+ 
+  const [getText, setText] = useState(0);
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
   const buttonClick = (txt) => {
     // alert(txt)
-    setText(getText + txt);
+    if(getText == 0)
+      setText(''+txt)
+    else
+      setText(getText+''+txt)
   };
   const chances = () => {
     if(attempts<=4){
@@ -19,10 +23,10 @@ export default function App() {
       console.log('out of attempts')
     }
       };
-  const butnlick = (text) => {
+  const butnlick = () => {
     chances();
     
-    if (text ==  randomnumber ) {
+    if (getText ==  randomnumber ) {
       console.log("correct");
     } else {
       console.log("fail");
@@ -33,7 +37,7 @@ export default function App() {
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
       <View>{randomnumber}</View>
-      <Text style={{ fontSize: 50 }}>{getText}</Text>
+      <TextInput onChange={(e)=>setText(e.target.value)} style={{ fontSize: 50 }} value={getText} />
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
           <Button title="1" color="green" onPress={buttonClick.bind(this, 1)} />
@@ -72,7 +76,7 @@ export default function App() {
           <Button
             title="guess"
             color="purple"
-            onPress={butnlick.bind(this, { setText })}
+            onPress={butnlick}
           />
         </View>
       </View>
