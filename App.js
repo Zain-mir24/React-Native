@@ -1,41 +1,46 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button,TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
- 
+ const[flag,setflag]=useState(false)
   const [getText, setText] = useState(0);
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
-  const[points,setpoints] = useState(0)
-  const[round,setround] =useState(0)
+  const [points, setpoints] = useState(0);
+  const [round, setround] = useState(0);
   const buttonClick = (txt) => {
     // alert(txt)
-    if(getText == 0)
-      setText(''+txt)
-    else
-      setText(getText+''+txt)
+    if (getText == 0) setText("" + txt);
+    else setText(getText + "" + txt);
   };
   const chances = () => {
-    if(attempts<=4){
-    setattempts(attempts+1)
-    console.log('incremented')
+    if (attempts <= 4) {
+      setattempts(attempts + 1);
+      console.log("incremented");
+    } else {
+      console.log("out of attempts");
+      setattempts(0);
+      setText(0);
+      setround(round + 1);
+       if(round>3){
+         setflag(true)
+       }
+       else{
+         setflag(false)
+       }
     }
-    
-    else{
-      console.log('out of attempts')
-      setattempts(0)
-      setround(round+1)
-    }
-      };
+  };
   const butnlick = () => {
     chances();
-    
-    if (getText ==  randomnumber ) {
+
+    if (getText == randomnumber) {
       console.log("correct");
-      setpoints(points+10)
+      setpoints(points + 10);
+      setText(0)
     } else {
       console.log("fail");
+      setText(0)
     }
   };
   return (
@@ -43,7 +48,7 @@ export default function App() {
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
       <View>{randomnumber}</View>
-      <Text style={{ fontSize: 50 }}  >{getText}</Text>
+      <Text style={{ fontSize: 50 }}>{getText}</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
           <Button title="1" color="green" onPress={buttonClick.bind(this, 1)} />
@@ -79,16 +84,20 @@ export default function App() {
             color="purple"
             onPress={buttonClick.bind(this, 9)}
           />
-          <Button
-            title="guess"
-            color="purple"
-            onPress={butnlick}
-          />
+          <Button title="guess" color="purple" onPress={butnlick} />
         </View>
       </View>
-      <View> <strong> Points of the player are {''+ points} User only has 5 attempts out of which {attempts} remains</strong></View>
-      
-      <View> Round no {round}</View>
+      <View>
+        {" "}
+        <strong>
+          {" "}
+          Points of the player are {"" + points} User only has 5 attempts out of
+          which {attempts} remains
+        </strong>
+      </View>
+
+   { flag?<View> Round no {round}</View> : <View> Stats </View>  }
+     
       <StatusBar style="auto" />
     </View>
   );
