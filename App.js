@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
- const[flag,setflag]=useState(false)
+  const [correct, Setcorrect] = useState("");
+  const [flag, setflag] = useState(false);
   const [getText, setText] = useState(0);
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
@@ -23,26 +24,27 @@ export default function App() {
       setattempts(0);
       setText(0);
       setround(round + 1);
-       if(round>3){
-         setflag(true)
-       }
-       else{
-         setflag(false)
-       }
+      if (round >= 3) {
+        setflag(true);
+      } else {
+        setflag(false);
+      }
     }
   };
   const butnlick = () => {
     chances();
 
     if (getText == randomnumber) {
-      console.log("correct");
+      Setcorrect( "correct");
       setpoints(points + 10);
-      setText(0)
+      setText(0);
     } else {
+      Setcorrect("Wrong");
       console.log("fail");
-      setText(0)
+      setText(0);
     }
   };
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
@@ -87,17 +89,17 @@ export default function App() {
           <Button title="guess" color="purple" onPress={butnlick} />
         </View>
       </View>
+      <View>{correct}</View>
       <View>
         {" "}
         <strong>
           {" "}
           Points of the player are {"" + points} User only has 5 attempts out of
-          which {attempts} remains
+          which he has made {attempts} attempts
         </strong>
+        {flag == false ? <View> Round {round}</View> : <View> User has  {points} points. User Guessed the random number {randomnumber}  and got {points} points</View>}
       </View>
 
-   { flag?<View> Round no {round}</View> : <View> Stats </View>  }
-     
       <StatusBar style="auto" />
     </View>
   );
