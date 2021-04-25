@@ -44,6 +44,7 @@ export default function App() {
       setText(0);
     }
   };
+  //Assigment 02
 
   return (
     <View style={styles.container}>
