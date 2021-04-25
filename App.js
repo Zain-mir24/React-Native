@@ -51,9 +51,9 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
-      <View>
+     
         <Text>{randomnumber}</Text>
-      </View>
+    
       <Text style={{ fontSize: 50 }}>{getText}</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
@@ -93,23 +93,24 @@ export default function App() {
           <Button title="guess" color="purple" onPress={butnlick} />
         </View>
       </View>
-      <View>{correct}</View>
+      <View>
+        <Text>{correct}</Text></View>
       <View>
         <Text>
-          {" "}
-          <strong>
-            {" "}
+        
             Points of the player are {"" + points} User only has 5 attempts out
             of which he has made {attempts} attempts
-          </strong>
+        
         </Text>
         {flag == false ? (
-          <View> Round {round}</View>
+          <View> <Text>Round {round}</Text></View>
         ) : (
           <View>
+            <Text>
             {" "}
             User has {points} points. User Guessed the random number{" "}
             {randomnumber} and got {points} points
+            </Text>
           </View>
         )}
       </View>
