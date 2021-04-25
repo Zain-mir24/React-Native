@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-
+//Assigment 02
+//FA18-bcs-037
+//Zain mir
 export default function App() {
   const [correct, Setcorrect] = useState("");
   const [flag, setflag] = useState(false);
@@ -35,7 +37,7 @@ export default function App() {
     chances();
 
     if (getText == randomnumber) {
-      Setcorrect( "correct");
+      Setcorrect("correct");
       setpoints(points + 10);
       setText(0);
     } else {
@@ -44,13 +46,14 @@ export default function App() {
       setText(0);
     }
   };
-  //Assigment 02
 
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
-      <View>{randomnumber}</View>
+      <View>
+        <Text>{randomnumber}</Text>
+      </View>
       <Text style={{ fontSize: 50 }}>{getText}</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
@@ -92,13 +95,23 @@ export default function App() {
       </View>
       <View>{correct}</View>
       <View>
-        {" "}
-        <strong>
+        <Text>
           {" "}
-          Points of the player are {"" + points} User only has 5 attempts out of
-          which he has made {attempts} attempts
-        </strong>
-        {flag == false ? <View> Round {round}</View> : <View> User has  {points} points. User Guessed the random number {randomnumber}  and got {points} points</View>}
+          <strong>
+            {" "}
+            Points of the player are {"" + points} User only has 5 attempts out
+            of which he has made {attempts} attempts
+          </strong>
+        </Text>
+        {flag == false ? (
+          <View> Round {round}</View>
+        ) : (
+          <View>
+            {" "}
+            User has {points} points. User Guessed the random number{" "}
+            {randomnumber} and got {points} points
+          </View>
+        )}
       </View>
 
       <StatusBar style="auto" />
