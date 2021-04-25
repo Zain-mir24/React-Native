@@ -26,7 +26,11 @@ export default function App() {
       setattempts(0);
       setText(0);
       setround(round + 1);
-      
+      // if (round >= 3) {
+      //   setflag(true);
+      // } else {
+      //   setflag(false);
+      // }
     }
   };
   const butnlick = () => {
@@ -98,17 +102,16 @@ export default function App() {
             of which he has made {attempts} attempts
         
         </Text>
-        {flag === false ? (
-            <View>
-            <Text>
-            {" "}
-            User has {points} points. User Guessed the random number{" "}
-            {randomnumber} and got {points} points and the round is {round}
-            </Text>
+        {flag == false ? 
+          <View>
+            <Text> User has {points} points. User Guessed the random number
+          {randomnumber} and got {points} points
+          </Text></View>
+        : 
+          <View>
+           null
           </View>
-        ) : (
-          null
-        )}
+        }
       </View>
 
       <StatusBar style="auto" />
