@@ -111,8 +111,10 @@ export default function App() {
               onPress={buttonClick.bind(this, 9)}
             />
           </View>
-
+          <View style={styles.buttonstyle} >
           <Button title="guess" color="purple" onPress={butnlick} />
+          </View>
+         
         </View>
       </View>
       <View>
@@ -166,10 +168,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: "auto",
     borderBottomColor: "black",
-    width: 2,
+    width:"50%",
+    height: 50
   },
-  buttonstyle: {
-    widht: "30px",
-    height: "40px",
-  },
+  buttonstyle:{
+    marginTop:50,
+    width:200
+  }
+  
 });
