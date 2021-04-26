@@ -8,7 +8,7 @@ function Opening(props) {
             <Text style={{textAlign:'center',fontSize:16}}>
                This is my guess number Game
             </Text>
-            <Button />
+            <Button title="Start Game" color="blue" onPress={props.begin}/>
         </View>
     )
 }

@@ -8,6 +8,7 @@ import {
   TextInput,
   Switch,
 } from "react-native";
+import Opening from "./components/Opening"
 //Assigment 02
 //FA18-bcs-037
 //Zain mir
@@ -159,7 +160,7 @@ const Header = (props) => {
 };
 const screenSwitching = () => {
   if (switching == "Guess a number") {
-    return b;
+    return <Opening  begin={()=>setswitch(-1)}/>;
   } else if (getnum == -2)
     return (
       <View>
