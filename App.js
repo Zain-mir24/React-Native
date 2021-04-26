@@ -51,67 +51,89 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
-     
-        <Text>{randomnumber}</Text>
-    
+
+      <Text>{randomnumber}</Text>
+
       <Text style={{ fontSize: 50 }}>{getText}</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: 50 }}>
-          <Button title="1" color="green" onPress={buttonClick.bind(this, 1)} />
-          <Button title="2" color="red" onPress={buttonClick.bind(this, 2)} />
-          <Button
-            title="3"
-            color="yellow"
-            onPress={buttonClick.bind(this, 3)}
-          />
-          <Button
-            title="4"
-            color="orange"
-            onPress={buttonClick.bind(this, 4)}
-          />
-          <Button title="5" color="pink" onPress={buttonClick.bind(this, 5)} />
-          <Button
-            title="6"
-            color="purple"
-            onPress={buttonClick.bind(this, 6)}
-          />
-          <Button
-            title="7"
-            color="purple"
-            onPress={buttonClick.bind(this, 7)}
-          />
-          <Button
-            title="8"
-            color="purple"
-            onPress={buttonClick.bind(this, 8)}
-          />
-          <Button
-            title="9"
-            color="purple"
-            onPress={buttonClick.bind(this, 9)}
-          />
+          <View style={styles.button}>
+            <Button
+              title="1"
+              color="green"
+              onPress={buttonClick.bind(this, 1)}
+              style={styles.button}
+            />
+            <Button
+              title="2"
+              color="red"
+              onPress={buttonClick.bind(this, 2)}
+              style={styles.button}
+            />
+            <Button
+              title="3"
+              color="yellow"
+              onPress={buttonClick.bind(this, 3)}
+              style={styles.button}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              title="4"
+              color="orange"
+              onPress={buttonClick.bind(this, 4)}
+            />
+            <Button
+              title="5"
+              color="pink"
+              onPress={buttonClick.bind(this, 5)}
+            />
+            <Button
+              title="6"
+              color="purple"
+              onPress={buttonClick.bind(this, 6)}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              title="7"
+              color="purple"
+              onPress={buttonClick.bind(this, 7)}
+            />
+            <Button
+              title="8"
+              color="purple"
+              onPress={buttonClick.bind(this, 8)}
+            />
+            <Button
+              title="9"
+              color="purple"
+              onPress={buttonClick.bind(this, 9)}
+            />
+          </View>
+
           <Button title="guess" color="purple" onPress={butnlick} />
         </View>
       </View>
       <View>
-        <Text>{correct}</Text></View>
+        <Text>{correct}</Text>
+      </View>
       <View>
         <Text>
-        
-            Points of the player are {"" + points} User only has 5 attempts out
-            of which he has made {attempts} attempts
-        
+          Points of the player are {"" + points} User only has 5 attempts out of
+          which he has made {attempts} attempts
         </Text>
-        {flag == false ? 
+        {flag == false ? (
           <View>
-            <Text> User has {points} points. User Guessed the random number
-          {randomnumber} and got {points} points
-          </Text></View>
-        : 
-          <View>
-           null
+            <Text>
+              {" "}
+              User has {points} points. User Guessed the random number
+              {randomnumber} and got {points} points
+            </Text>
           </View>
-        }
+        ) : (
+          <View>null</View>
+        )}
       </View>
 
       <StatusBar style="auto" />
@@ -139,5 +161,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    flexDirection: "row",
+    margin: "auto",
+    borderBottomColor: "black",
+    width: 2,
+  },
+  buttonstyle: {
+    widht: "30px",
+    height: "40px",
   },
 });
