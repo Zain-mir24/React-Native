@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  Switch,
+} from "react-native";
 //Assigment 02
 //FA18-bcs-037
 //Zain mir
@@ -12,6 +19,8 @@ export default function App() {
   const [attempts, setattempts] = useState(0);
   const [points, setpoints] = useState(0);
   const [round, setround] = useState(0);
+  const Gamestart = "Guess a number";
+  const [switching, setswitch] = useState(Gamestart);
   const buttonClick = (txt) => {
     // alert(txt)
     if (getText == 0) setText("" + txt);
@@ -111,10 +120,9 @@ export default function App() {
               onPress={buttonClick.bind(this, 9)}
             />
           </View>
-          <View style={styles.buttonstyle} >
-          <Button title="guess" color="purple" onPress={butnlick} />
+          <View style={styles.buttonstyle}>
+            <Button title="guess" color="purple" onPress={butnlick} />
           </View>
-         
         </View>
       </View>
       <View>
@@ -128,7 +136,6 @@ export default function App() {
         {flag == false ? (
           <View>
             <Text>
-              {" "}
               User has {points} points. User Guessed the random number
               {randomnumber} and got {points} points
             </Text>
@@ -150,6 +157,17 @@ const Header = (props) => {
     </View>
   );
 };
+const screenSwitching = () => {
+  if (switching == "Guess a number") {
+    return b;
+  } else if (getnum == -2)
+    return (
+      <View>
+        <Text style={styles.container}>Game Finished</Text>
+      </View>
+    );
+  else return gameview;
+};
 
 const headerStyles = StyleSheet.create({
   text: {
@@ -168,12 +186,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: "auto",
     borderBottomColor: "black",
-    width:"50%",
-    height: 50
+    width: "50%",
+    height: 50,
   },
-  buttonstyle:{
-    marginTop:50,
-    width:200
-  }
-  
+  buttonstyle: {
+    marginTop: 50,
+    width: 200,
+  },
 });
