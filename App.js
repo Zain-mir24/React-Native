@@ -106,7 +106,7 @@ export default function App() {
             <Text style={styles.finish}>Game Finished</Text>
             <Text>The user completed round {round}</Text>
             <Button
-              style={styles.button}
+              style={styles.buttonstyle}
               onPress={() => {
                 setswitch(Gamestart);
               }}
@@ -255,6 +255,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   Text:{
-    marginTop:"50px"
+    marginTop:"50px",
+
   }
 });
