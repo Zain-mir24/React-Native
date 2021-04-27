@@ -194,7 +194,7 @@ export default function App() {
         <Text>{correct}</Text>
       </View>
       <View>
-        <Text>
+        <Text style={styles.Text}>
           Points of the player are {"" + points} User only has 5 attempts out of
           which he has made {attempts} attempts .{screenhint}
         </Text>
@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
     width: "50%",
     height: 50,
+   
   },
   buttonstyle: {
     marginTop: 50,
@@ -253,4 +254,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
   },
+  Text:{
+    marginTop:"50px"
+  }
 });
