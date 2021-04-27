@@ -9,7 +9,7 @@ import {
   TextInput,
   Switch,
 } from "react-native";
-import Opening from "./components/Opening"
+import Opening from "./components/Opening";
 //Assigment 02
 //FA18-bcs-037
 //Zain mir
@@ -23,7 +23,7 @@ export default function App() {
   const [round, setround] = useState(0);
   const Gamestart = "Guess a number";
   const [switching, setswitch] = useState(Gamestart);
-  
+
   const buttonClick = (txt) => {
     // alert(txt)
     if (getText == 0) setText("" + txt);
@@ -38,11 +38,7 @@ export default function App() {
       setattempts(0);
       setText(0);
       setround(round + 1);
-      // if (round >= 3) {
-      //   setflag(true);
-      // } else {
-      //   setflag(false);
-      // }
+      setswitch(-2);
     }
   };
   const butnlick = () => {
@@ -60,18 +56,29 @@ export default function App() {
   };
   const screenSwitching = () => {
     if (switching == "Guess a number") {
-      return <Opening  begin={()=>setswitch(-1)}/>;
-    } else if (switching == -2)
-      return (
-        <View>
-          <Text style={styles.container}>Game Finished</Text>
-  
-        </View>
-      );
-    else return gameView;
-        
+      return <Opening begin={() => setswitch(-1)} />;
+    } else if (switching == -2) {
+      
+        if(round <= 3) {
+          return( <View>
+            <Text style={styles.finish}>Game Finished</Text>
+            <Text>The user completed round {round}</Text>
+            <Button style={styles.button} onPress={()=>{setswitch(-1)}}>Play again</Button>
+          </View>)
+         }
+         else{
+          return(<View>
+          <Text style={styles.finish}>Game Finished</Text>
+          <Text>The user completed round {round}</Text>
+          <Button style={styles.button} onPress={()=>{setswitch(Gamestart)}}>Finish</Button>
+        </View>)
+         }
+          
+    
+      
+    } else return gameView;
   };
-  const gameView =(
+  const gameView = (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
@@ -138,6 +145,9 @@ export default function App() {
           <View style={styles.buttonstyle}>
             <Button title="guess" color="purple" onPress={butnlick} />
           </View>
+          <View>
+            <Button title="Hint" color="red" />
+          </View>
         </View>
       </View>
       <View>
@@ -161,16 +171,9 @@ export default function App() {
       </View>
 
       <StatusBar style="auto" />
-       
     </View>
-    
   );
-  return(
-    <View>
-{screenSwitching()}
-      </View>
-  )
- 
+  return <View>{screenSwitching()}</View>;
 }
 
 const Header = (props) => {
@@ -180,8 +183,6 @@ const Header = (props) => {
     </View>
   );
 };
-
-
 
 const headerStyles = StyleSheet.create({
   text: {
@@ -206,5 +207,10 @@ const styles = StyleSheet.create({
   buttonstyle: {
     marginTop: 50,
     width: 200,
+  },
+  finish: {
+    backgroundColor: "blue",
+    textAlign: "center",
+    color: "white",
   },
 });
