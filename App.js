@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+import { render } from "react-dom";
 import {
   StyleSheet,
   Text,
@@ -22,6 +23,7 @@ export default function App() {
   const [round, setround] = useState(0);
   const Gamestart = "Guess a number";
   const [switching, setswitch] = useState(Gamestart);
+  
   const buttonClick = (txt) => {
     // alert(txt)
     if (getText == 0) setText("" + txt);
@@ -56,8 +58,20 @@ export default function App() {
       setText(0);
     }
   };
-
-  return (
+  const screenSwitching = () => {
+    if (switching == "Guess a number") {
+      return <Opening  begin={()=>setswitch(-1)}/>;
+    } else if (switching == -2)
+      return (
+        <View>
+          <Text style={styles.container}>Game Finished</Text>
+  
+        </View>
+      );
+    else return gameView;
+        
+  };
+  const gameView =(
     <View style={styles.container}>
       <Text>Open up App.js to start working on your p!</Text>
       <Header fullname="Zain mir" />
@@ -147,8 +161,16 @@ export default function App() {
       </View>
 
       <StatusBar style="auto" />
+       
     </View>
+    
   );
+  return(
+    <View>
+{screenSwitching()}
+      </View>
+  )
+ 
 }
 
 const Header = (props) => {
@@ -158,17 +180,8 @@ const Header = (props) => {
     </View>
   );
 };
-const screenSwitching = () => {
-  if (switching == "Guess a number") {
-    return <Opening  begin={()=>setswitch(-1)}/>;
-  } else if (getnum == -2)
-    return (
-      <View>
-        <Text style={styles.container}>Game Finished</Text>
-      </View>
-    );
-  else return gameview;
-};
+
+
 
 const headerStyles = StyleSheet.create({
   text: {
