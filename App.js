@@ -15,7 +15,7 @@ import Opening from "./components/Opening";
 //Zain mir
 export default function App() {
   const [correct, Setcorrect] = useState("");
-  const [flag, setflag] = useState(false);
+  
   const [getText, setText] = useState(0);
   const [randomnumber, changenumber] = useState(Math.trunc(Math.random() * 99));
   const [attempts, setattempts] = useState(0);
@@ -23,6 +23,8 @@ export default function App() {
   const [round, setround] = useState(0);
   const Gamestart = "Guess a number";
   const [switching, setswitch] = useState(Gamestart);
+  const [Hint, sethint] = useState(0);
+  const [screenhint, setscreenhint] = useState("");
 
   const buttonClick = (txt) => {
     // alert(txt)
@@ -39,6 +41,30 @@ export default function App() {
       setText(0);
       setround(round + 1);
       setswitch(-2);
+    }
+  };
+
+  const hint = () => {
+    sethint(Hint + 1);
+    if (Hint == 1) {
+      
+      if (getText < randomnumber) {
+        setpoints(points - 5);
+        setscreenhint(""+"The hint is The number you have guessed is actually smaller than the actual number");
+      } else {
+        setpoints(points - 5);
+        setscreenhint(""+"The hint is The number you have guessed is actually greater than the actual number")
+      }
+    }
+    else if(Hint == 2){
+      if(randomnumber%2==0){
+        setpoints(points-5);
+        setscreenhint(""+"The hint is that the number is actually an even number")
+      }
+      else{
+        setpoints(points-5)
+        setscreenhint(""+"The hint is that number is actually an odd number")
+      }
     }
   };
   const butnlick = () => {
@@ -58,24 +84,38 @@ export default function App() {
     if (switching == "Guess a number") {
       return <Opening begin={() => setswitch(-1)} />;
     } else if (switching == -2) {
-      
-        if(round <= 3) {
-          return( <View>
+      if (round <= 3) {
+        return (
+          <View>
+            <View>
+              <Text>User has {points} points.</Text>
+            </View>
+            <Button
+              style={styles.button}
+              onPress={() => {
+                setswitch(-1);
+              }}
+            >
+              Play again
+            </Button>
+          </View>
+        );
+      } else {
+        return (
+          <View>
             <Text style={styles.finish}>Game Finished</Text>
             <Text>The user completed round {round}</Text>
-            <Button style={styles.button} onPress={()=>{setswitch(-1)}}>Play again</Button>
-          </View>)
-         }
-         else{
-          return(<View>
-          <Text style={styles.finish}>Game Finished</Text>
-          <Text>The user completed round {round}</Text>
-          <Button style={styles.button} onPress={()=>{setswitch(Gamestart)}}>Finish</Button>
-        </View>)
-         }
-          
-    
-      
+            <Button
+              style={styles.button}
+              onPress={() => {
+                setswitch(Gamestart);
+              }}
+            >
+              Finish
+            </Button>
+          </View>
+        );
+      }
     } else return gameView;
   };
   const gameView = (
@@ -146,7 +186,7 @@ export default function App() {
             <Button title="guess" color="purple" onPress={butnlick} />
           </View>
           <View>
-            <Button title="Hint" color="red" />
+            <Button title="Hint" color="red" onPress={hint} />
           </View>
         </View>
       </View>
@@ -156,9 +196,9 @@ export default function App() {
       <View>
         <Text>
           Points of the player are {"" + points} User only has 5 attempts out of
-          which he has made {attempts} attempts
+          which he has made {attempts} attempts .{screenhint}
         </Text>
-        {flag == false ? (
+        {/* {flag == false ? (
           <View>
             <Text>
               User has {points} points. User Guessed the random number
@@ -167,8 +207,8 @@ export default function App() {
           </View>
         ) : (
           <View>null</View>
-        )}
-      </View>
+        )} */}
+          </View>
 
       <StatusBar style="auto" />
     </View>
