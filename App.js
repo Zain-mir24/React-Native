@@ -25,7 +25,8 @@ export default function App() {
   const [switching, setswitch] = useState(Gamestart);
   const [Hint, sethint] = useState(0);
   const [screenhint, setscreenhint] = useState("");
-
+   const [plus,setplus]=useState(0)
+   const[minus,setminus]=useState(0)
   const buttonClick = (txt) => {
     // alert(txt)
     if (getText == 0) setText("" + txt);
@@ -46,6 +47,8 @@ export default function App() {
 
   const hint = () => {
     sethint(Hint + 1);
+    setplus(randomnumber+10)
+     setminus(randomnumber-10)
     if (Hint == 1) {
       
       if (getText < randomnumber) {
@@ -65,6 +68,20 @@ export default function App() {
         setpoints(points-5)
         setscreenhint(""+"The hint is that number is actually an odd number")
       }
+    }else if(Hint==3){
+     if(getText < randomnumber) {
+        setpoints(points - 5);
+        setscreenhint(""+"The hint is The number you have guessed is actually smaller than the actual number");
+      } else {
+        setpoints(points - 5);
+        setscreenhint(""+"The hint is The number you have guessed is actually greater than the actual number")
+      }
+    }
+    else if(Hint==4){
+     
+     
+     setscreenhint(""+"The number ranges between  "+`" "${minus}`+"and"+`" "${plus}`)
+     setpoints(points-5)
     }
   };
   const butnlick = () => {
@@ -88,10 +105,10 @@ export default function App() {
         return (
           <View>
             <View>
-              <Text>User has {points} points.</Text>
+              <Text>User has {points} points.The round no was {round}</Text>
             </View>
             <Button
-              style={styles.button}
+              style={styles.buttonstyle}
               onPress={() => {
                 setswitch(-1);
               }}
@@ -198,16 +215,7 @@ export default function App() {
           Points of the player are {"" + points} User only has 5 attempts out of
           which he has made {attempts} attempts .{screenhint}
         </Text>
-        {/* {flag == false ? (
-          <View>
-            <Text>
-              User has {points} points. User Guessed the random number
-              {randomnumber} and got {points} points
-            </Text>
-          </View>
-        ) : (
-          <View>null</View>
-        )} */}
+       
           </View>
 
       <StatusBar style="auto" />
