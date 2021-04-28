@@ -80,7 +80,7 @@ export default function App() {
     else if(Hint==4){
      
      
-     setscreenhint(""+"The number ranges between  "+`" "${minus}`+"and"+`" "${plus}`)
+     setscreenhint(""+"The number ranges between  "+` ${minus} `+" and "+` ${plus}`)
      setpoints(points-5)
     }
   };
